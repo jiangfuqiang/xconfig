@@ -1,0 +1,21 @@
+grammar org.xconfig.Xconfig with org.eclipse.xtext.common.Terminals
+
+generate xconfig "http://www.xconfig.org/Xconfig"
+
+Model hidden(WS, ML_COMMENT, SL_COMMENT):
+	xmls += XmlConfig*
+;
+
+XmlConfig:
+	'xml' name=ID '{'
+		configElements += ConfigElement*
+	'}'
+;
+
+ConfigElement:
+	name=ID ':' type=ConfigElementType
+;
+
+ConfigElementType:
+	type=STRING
+;
